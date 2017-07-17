@@ -4,12 +4,13 @@ var express = require('express');
 var request = require('request');
 
 var deploy = require('./deployment/script');
+var token = require('./secret_token');
 
 var app = express();
 
 function createDeploymentRequest (callback) {
     var requestOption = {
-        url: 'https://api.github.com/repos/wakaid/axist-server/deployments?access_token=f7d869606fe0cc5021c1f1f0951da0b59e9b068e',
+        url: 'https://api.github.com/repos/wakaid/axist-server/deployments?access_token=' + token,
         method: 'POST',
         headers: {
             'User-Agent': 'Awesome-Wakaid-App'
@@ -22,7 +23,7 @@ function createDeploymentRequest (callback) {
 
 function changeDeploymentState (deploymentId, state, callback) {
     var requestOption = {
-        url: 'https://api.github.com/repos/wakaid/axist-server/deployments/' + deploymentId + '/statuses?access_token=f7d869606fe0cc5021c1f1f0951da0b59e9b068e',
+        url: 'https://api.github.com/repos/wakaid/axist-server/deployments/' + deploymentId + '/statuses?access_token=' + token,
         method: 'POST',
         headers: {
             'User-Agent': 'Awesome-Wakaid-App'
@@ -38,7 +39,7 @@ function changeDeploymentState (deploymentId, state, callback) {
 
 function changeCommitState (sha, state, callback) {
     var requestOption = {
-        url: 'https://api.github.com/repos/wakaid/axist-server/statuses/' + sha + '?access_token=f7d869606fe0cc5021c1f1f0951da0b59e9b068e',
+        url: 'https://api.github.com/repos/wakaid/axist-server/statuses/' + sha + '?access_token=' + token,
         method: 'POST',
         headers: {
             'User-Agent': 'Awesome-Wakaid-App'
