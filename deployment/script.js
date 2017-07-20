@@ -2,7 +2,7 @@
 
 var request = require('request');
 
-var token = require('./secret_token');
+var token = require('../secret_token');
 
 var deployLogs = [];
 
