@@ -40,7 +40,7 @@ function changeCommitState (sha, state, callback) {
 
 module.exports = function(deploymentId, sha) {
     var spawn = require('child_process').spawn;
-    var child = spawn('cd ../axist-server && git pull origin production && npm install && npm update && npm install -g forever grunt && npm test && forever stop server && forever start --uid "server" app.js', {
+    var child = spawn('cd ../axist-server && git pull origin production && npm install && npm update && npm install -g forever grunt && npm test && forever stop server && forever start --id "server" app.js', {
         shell: true
     });
 
